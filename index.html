@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <header>
+      <div style="margin-left: 25px; margin-right: 100px">
+        <h1>Заголовок</h1>
+        <h2>Заголовок</h2>
+        <h3>Заголовок</h3>
+        <h4>Заголовок</h4>
+        <h5>Заголовок</h5>
+        <h6>Заголовок</h6>
+      </div>
+    </header>
+    <main>
+      <div>
+        <p><b>Жирный</b></p>
+        <p><i>Курсив</i></p>
+        <p><u>Подчеркнутый</u></p>
+      </div>
+      <div>
+        <p>Списки:</p>
+        <ul>
+          <li>Один</li>
+          <li>Два</li>
+          <li>Три</li>
+        </ul>
+      </div>
+      <div>
+        <ol>
+          <li>Один</li>
+          <li>Два</li>
+          <li>Три</li>
+        </ol>
+      </div>
+      <div>
+        <table border="1" cellpadding="5" width="100%">
+          <thead>
+            <tr>
+              <th>ячейка 1</th>
+              <th>ячейка 2</th>
+              <th>ячейка 3</th>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td>ячейка</td>
+            </tr>
+            <tr>
+              <td>ячейка</td>
+              <td>ячейка</td>
+              <td>ячейка</td>
+            </tr>
+            <tr>
+              <td>ячейка</td>
+              <td>ячейка</td>
+              <td>ячейка</td>
+            </tr>
+            <tr>
+              <td>ячейка</td>
+              <td>ячейка</td>
+              <td>ячейка</td>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <section>
+        <form onsubmit="return false;" style="margin: 20px 0; display: block">
+          <div>
+            <label for="first_name">First name</label>
+            <input id="first_name" type="text" />
+          </div>
+          <div>
+            s
+            <label for="email">Email</label>
+            <input id="email" type="email" />
+          </div>
+          <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" />
+          </div>
+          <div>
+            <label for="range">Range</label>
+            <input id="range" type="range" min="0" max="10" step="1" />
+          </div>
+          <div>
+            <label for="date">Birthday</label>
+            <input id="date" type="date" />
+          </div>
+          <div>
+            <input id="chekbox" type="checkbox" />
+            <lable for="chekbox">Agree</lable>
+          </div>
+          <div>
+            <input id="yes" type="radio" name="question" />
+            <label for="yes">Да</label>
+
+            <input id="no" type="radio" name="question" />
+            <label for="no">Нет</label>
+          </div>
+          <button>Send</button>
+        </form>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
