@@ -1,71 +1,133 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/ " />
-    <style>
+<html lang="en">
 
-        html {
-            background-color: #cccccc;
-            font-size: 12px;
-        }
-        .card {
-            width: 144px;
-            margin: 0 auto;
-            text-align: center;
-            border: 1px solid #222;
-            background: white;
-        }
-        }
-      p:not(last-child) {
-        margin-bottom: 1rem;
-      }
-      .card img {
-        margin-bottom: 0.5rem;
-      }
-      button {
-          border: none;
-          width: 100%;
-          background: #222222;
-          color: white;
-          padding: 0.5rem 0;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home work(task3)</title>
+  <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;700;800&family=Montserrat:wght@500&display=swap');
 
-             }
-      button:hover {
-          background-color: #444;
-      }
-      .card > h1 {
-          font-size: 2rem;
-          line-height: 0.75;
-          font-weight: bold;
-          margin-bottom: 0.5rem;
-      }
-      .card > price {
-          color: #666;
-          font-size: 0.75rem;
-          font-weight: bold;
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
 
+      body * {
+          font-family: 'Inter', sans-serif;
       }
-      .card .text {
-          font-weight: lighter;
-          font-size: 0.75rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="card">
-      <img src="jeans3.png" alt="Denim Jeans" style="width: 100%" />
-      <h1>Tailored Jeans</h1>
-      <p class="price">$19.99</p>
-      <p class="text">Some text about the jeans..</p>
-      <p><button>Add to Cart</button></p>
+
+  </style>
+</head>
+<body class="m-5">
+<header class="flex flex-row justify-between p-5 m-3">
+
+  <div class="flex flex-row font-bold text-5xl" style="width: 715px">W.</div>
+
+  <div class="flex flex-row gap-x-5 items-center text-neutral-400">
+    <div>Номе</div>
+    <div>New</div>
+    <div>Popular</div>
+    <div>Trending</div>
+    <div>Categories</div>
+  </div>
+
+</header>
+
+<main class="flex flex-col">
+
+
+  <div class="flex flex-col">
+
+    <div class="flex flex-col w-1/2 justify-between ">
+
+      <img src="./public/image-web-3-desktop.jpg" alt="">
+
+      <div class="flex flex-row">
+        <div class="flex flex-col font-bold text-4xl pr-5 pb-20">
+          The Bright Future of Web 3.0?
+        </div>
+
+        <div class="flex flex-col pl-5">
+
+          <div class="flex flex-row text-neutral-500">We dive into the next evolution of the web that claims to put
+            the power of the
+            platforms back into the
+            hands
+            oof the people. But is it really fulfilling its promise?
+          </div>
+          <button class="w-30 text-white" style="background-color:hsl(5, 85%, 63%)">READ MORE</button>
+        </div>
+      </div>
+
     </div>
 
-    <header></header>
-    <main></main>
-    <footer></footer>
-  </body>
+
+    <div class="flex flex-row">
+
+      <div class="flex flex-col w-1/8 justify-between">
+
+        <div class="flex flex-col p-7" style="background-color:hsl(240, 100%, 5%)">
+
+          <div class="flex flex-col font-bold text-3xl" style="color: hsl(35, 77%, 62%)">
+            New
+          </div>
+
+          <div class="flex flex-col font-bold" style="color:hsl(36, 100%, 99%)">
+            Hydrogen VS Electric Cars
+          </div>
+
+          <div class="flex flex-col" style="color: hsl(233, 8%, 79%)">Will hydrogen-fueled cars ever
+            catch up to EVs
+          </div>
+          <hr style="background-color: hsl(233, 8%, 79%)" />
+          <div class="flex flex-col font-bold" style="color: hsl(36, 100%, 99%)">The Downsides of Al Artystry</div>
+          <div style="color: hsl(233, 8%, 79%)">What are the possible adverse effects of on-demand Al image
+            generation?
+          </div>
+          <hr style="background-color: hsl(233, 8%, 79%)" />
+          <div class="flex flex-col font-bold" style="color: hsl(36, 100%, 99%)">Is VC Funding Drying Up?</div>
+          <div style="color: hsl(233, 8%, 79%)">Private funding by VC firms is down 50% YOY. We take a look at what
+            that means.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div class="flex flex-row gap-x-5 items-center">
+
+    <div class="flex flex-row px-2 py-1">
+      <img src="./public/image-retro-pcs.jpg" alt="" />
+      <div class="flex-row">
+        <div class="text-5xl text-neutral-300 font-bold">01</div>
+        <div class="flex flex-col font-bold">Reviving Retro PCs</div>
+        <div class="text-neutral-500">What happens when old PCs are given modern upgrades?</div>
+      </div>
+    </div>
+
+    <div class="flex flex-row px-2 py-2">
+      <img src="./public/image-top-laptops.jpg" alt="" />
+      <div class="flex-row">
+        <div class="text-5xl text-neutral-300 font-bold">02</div>
+        <div class="flex flex-col font-bold">Top 10 Laptops of 2022</div>
+        <div class="text-neutral-500">Our best picks for various needs and budgets</div>
+      </div>
+    </div>
+
+    <div class="flex flex-row px-2 py-2">
+      <img src="./public/image-gaming-growth.jpg" alt="" />
+      <div class="flex-row">
+        <div class="text-5xl text-neutral-300 font-bold">03</div>
+        <div class="flex flex-col font-bold">The Growth of Gaming</div>
+        <div class="text-neutral-500">How the pandemic has sparked fresh opportunities</div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+</body>
 </html>
