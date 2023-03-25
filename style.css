@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@500;700&family=Sofia+Sans+Extra+Condensed:wght@300&display=swap');
+
+html {
+    background-color: hsl(30, 38%, 92%);
+    font-size: 12px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-half-column {
+    flex: 1;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+
+    width: 655px;
+    background: white;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.card-content-wrapper {
+    padding: 2.5rem;
+}
+
+.card-content-wrapper > *:not(:last-child) {
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.cart-content_name {
+    font-family: 'Montserrat', sans;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #888;
+}
+
+.cart-content_title {
+    font-family: 'Fraunces', sans;
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #222;
+}
+
+.cart-content_text {
+    font-family: 'Montserrat', sans;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #666;
+}
+
+.cart-content_prise {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cart-content_prise-current {
+    font-family: 'Fraunces', sans;
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: hsl(158, 36%, 37%);
+}
+
+.cart-content_prise-previous {
+    padding: 0 0 0 1rem;
+    font-family: 'Montserrat', sans;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    color: #888;
+}
+
+.cart-content_btn-buy {
+    font-family: 'Montserrat', sans-serif;
+    background: hsl(158, 36%, 37%);
+    width: 100%;
+    outline: 0;
+    border: 0;
+    padding: 1.25rem 0;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 0.75rem;
+}
+
+.image-card {
+    width: 100%;
+    height: 100%;
+    background-color: lightblue;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+@media (max-width: 750px) {
+    .card {
+        display: flex;
+        flex-direction: column;
+        width: 355px;
+    }
+
+    .img-data {
+        width: 100%;
+        height: 300px;
+    }
+}
