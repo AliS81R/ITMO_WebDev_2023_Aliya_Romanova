@@ -4,19 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
     <title>Vite App</title>
-    <!--    <style>-->
-    <!--      @tailwind base;-->
-    <!--      @tailwind components;-->
-    <!--      @tailwind utilities;-->
-    <!--    </style>-->
   </head>
-  <body class="flex w-screen h-screen flex-col bg-teal-100/50 grid place-items-center p-12">
+  <body
+    class="flex w-screen h-screen flex-col bg-teal-100/50 grid place-items-center p-12 font-sans"
+  >
     <div class="container flex flex- row w-full h-full bg-neutral-200 rounded-xl p-4">
       <aside class="flex flex-col min-w-[144px]">
         <div class="flex flex-row items-center gap-x-2 py-3">
-          <i class="iconify-inline text-teal-700 text-3xl" data-icon="ph:cube-focus-bold"></i>
+          <i class="i-ph-cube-focus-bold text-teal-700 text-3xl"></i>
           <span class="font-bold text-xl">Taski</span>
         </div>
       </aside>
@@ -36,18 +33,51 @@
         </div>
         <div class="flex flex-row justify-between px-4 py-2 items-center">
           <div class="flex flex-col">
-            <span class="text-lg text-neutral-400 font-bold">Filter</span>
+            <div class="flex flex-row items-center text-neutral-400 gap-x-2">
+              <i class="i-material-symbols:filter-alt"></i>
+              <span class="text-lg font-bold">Filter</span>
+              <i class="i-mdi:chevron-down hover:text-neutral-600"></i>
+            </div>
           </div>
           <div class="flex flex-col">
             <div class="flex flex-row items-center gap-x-4">
-              <span class="text-neutral-400 text-xs">Sorted by</span>
-              <span class="text-neutral-400 text-xs">Group by: Status</span>
+              <div class="flex flex-row items-center text-neutral-400">
+                <span class="text-xs">Sorted by</span>
+                <i class="i-mdi:chevron-down hover:text-neutral-600"></i>
+              </div>
+              <div class="flex flex-col items-center text-neutral-400 text-xs">
+                <div class="flex flex-row">
+                  <span>Group by:</span>
+                  <div class="flex flex-row">
+                    <span>Status</span>
+                    <i class="i-mdi:chevron-down hover:text-neutral-600"></i>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="flex flex-row justify-between gap-x-4 h-full">
-          <div class="flex flex-coll h-full w-1/3 bg-gray-200/80 rounded-xl">
-            <div class="flex flex-row"></div>
+          <div class="flex flex-coll h-full w-1/3 bg-gray-200/80 rounded-xl p-2">
+            <div class="flex flex-row justify-between">
+              <div class="flex flex-col gap-x-1 font-bold">
+                <span>To Do</span>
+                <div class="flex flex-col bg-white rounded-lg">
+                  <div class="flex flex-row">
+                    Layout Design
+                    <i></i>
+                  </div>
+                  <div>
+                    <i></i>
+                    Document link
+                  </div>
+                  <div class="flex flex-row">
+                    <div class="flex flex-row bg-white rounded-lg">Update</div>
+                    Web 12 days left
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="flex flex-coll h-full w-1/3 bg-gray-200/80 rounded-xl">2</div>
