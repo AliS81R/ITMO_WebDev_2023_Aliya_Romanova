@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home work(task3)</title>
+    <style>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+
+      .color-text-primary {
+        color: hsl(35, 77%, 62%);
+      }
+    </style>
+  </head>
+  <body class="m-5 flex flex-col">
+    <div class="container">
+      <header class="flex flex-row justify-between p-5 m-3">
+        <div class="flex flex-row font-bold text-5xl" style="width: 715px">
+          <img src="public/logo.svg" alt="" />
+        </div>
+        <div class="flex flex-row gap-x-5 items-center justify-between">
+          <div>Номе</div>
+          <div>New</div>
+          <div>Popular</div>
+          <div>Trending</div>
+          <div>Categories</div>
+        </div>
+      </header>
+
+      <main class="flex flex-row pb-7">
+        <!--контент - все элементы таблицы-->
+
+        <div class="flex flex-col w-30 justify-between pr-5">
+          <!--блок картинка и две колонки-->
+          <div class="flex flex-col">
+            <img src="public/image-web-3-desktop.jpg" alt="" />
+          </div>
+          <div class="flex flex-row">
+            <div class="flex flex-col font-bold text-4xl px-5 py-5">
+              <!--левый блок колонки-->
+              The Bright Future of Web 3.0?
+            </div>
+
+            <div class="flex flex-col">
+              <!--правый блок колонки-->
+              <div class="flex flex-row px-2 py-4">
+                We dive into the next evolution of the web that claims to put
+                the power of the platforms back into the hands oof the people.
+                But is it really fulfilling its promise?
+              </div>
+
+              <div class="flex flex-col absolute pt-28">
+                <button
+                  class="w-30 text-white px-12 py-3 tracking-widest"
+                  style="background-color: hsl(5, 85%, 63%)"
+                >
+                  READ MORE
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col bg-gray-900 px-4">
+          <!--правый блок колонки-->
+
+          <div class="flex flex-row px-4 py-2">
+            <span class="font-bold text-3xl color-text-primary">New</span>
+          </div>
+
+          <div
+            class="flex flex-row font-bold px-1 py-3"
+            style="color: hsl(36, 100%, 99%)"
+          >
+            Hydrogen VS Electric Cars
+          </div>
+
+          <div class="flex flex-row pb-4" style="color: hsl(233, 8%, 79%)">
+            Will hydrogen-fueled cars ever catch up to EVs
+          </div>
+          <hr style="background-color: hsl(233, 8%, 79%)" />
+          <div
+            class="flex flex-col font-bold pt-4"
+            style="color: hsl(36, 100%, 99%)"
+          >
+            The Downsides of Al Artystry
+          </div>
+          <div class="flex flex-row pt-4 pb-4" style="color: hsl(233, 8%, 79%)">
+            What are the possible adverse effects of on-demand Al image
+            generation?
+          </div>
+          <hr style="background-color: hsl(233, 8%, 79%)" />
+          <div
+            class="flex flex-col font-bold pt-4"
+            style="color: hsl(36, 100%, 99%)"
+          >
+            Is VC Funding Drying Up?
+          </div>
+          <div class="flex flex-col pt-4" style="color: hsl(233, 8%, 79%)">
+            Private funding by VC firms is down 50% YOY. We take a look at what
+            that means.
+          </div>
+        </div>
+      </main>
+
+      <footer class="flex flex-row pt-5">
+        <div class="flex flex-row px-1 py-2">
+          <div class="flex flex-col px-2 py-2">
+            <img src="./public/image-retro-pcs.jpg" alt="" />
+          </div>
+
+          <div class="flex-row pl-6">
+            <div class="text-3xl" style="color: darkgrey">01</div>
+            <div class="font-bold text-transparent-200">Reviving Retro PCs</div>
+            <div>What happens when old PCs are given modern upgrades?</div>
+          </div>
+        </div>
+
+        <div class="flex flex-row px-4 py-2">
+          <div class="flex flex-col px-2 py-2">
+            <img src="./public/image-top-laptops.jpg" alt="" />
+          </div>
+
+          <div class="flex-row pl-6">
+            <div class="text-3xl" style="color: darkgrey">02</div>
+            <div class="font-bold text-transparent-200">Reviving Retro PCs</div>
+            <div>What happens when old PCs are given modern upgrades?</div>
+          </div>
+        </div>
+
+        <div class="flex flex-row px-2 py-2">
+          <div class="flex flex-col px-2 py-2">
+            <img src="./public/image-gaming-growth.jpg" alt="" />
+          </div>
+
+          <div class="flex-row pl-6">
+            <div class="text-3xl" style="color: darkgrey">03</div>
+            <div class="font-bold text-transparent-200">Reviving Retro PCs</div>
+            <div>What happens when old PCs are given modern upgrades?</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
