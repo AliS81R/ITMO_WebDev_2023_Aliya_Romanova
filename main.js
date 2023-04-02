@@ -1,32 +1,15 @@
-const DOM = document.getElementById.bind(document);
-
-const domInpName = DOM("inpName");
-const domInpSurname = DOM("inpSurname");
-const domConResult = DOM("conResult");
-
-let fullname = "";
-
-
-domInpName.oninput = onInpNameInpur;
-domInpSurname.oninput = onInpSurnameameInpur;
-
-document.oninput = (e) => {
-  console.log("Document", e);
-};
-
-console.log(domInpName, domInpSurname);
-const getFullName = () => {&{domInpName.value} &{domInpSurname.value}};
-function formFullname() {
-  fullname = domInpName.value + " " + domInpSurname.value;
-
+function sum(a, b) {
+  return a + b;
 }
 
-function onInpNameInpur(e) {
-  console.log("onInpNameInpur", { e });
-  formFullname();
+function substract(a, b) {
+  return a - b;
 }
 
-function onInpSurnameameInpur(e) {
-  console.log("onInpSurnameameInpur", { e });
-  formFullname();
+function multiply(a, b) {
+  return a * b;
+}
+
+function division(a, b) {
+  return a / b;
 }
