@@ -1,27 +1,8 @@
 const OPERATIONS = {
-  sum: "+",
-  substract: "-",
-  multiply: "*",
-  division: "/",
+  sum: { method: (a, b) => a + b, title: "+" },
+  sub: { method: (a, b) => a - b, title: "-" },
+  mult: { method: (a, b) => a * b, title: "*" },
+  divd: { method: (a, b) => a / b, title: "/" },
 };
 
-function calculate(a, b, operation) {
-  let result = 0;
-  switch (operation) {
-    case "+":
-      result = a + b;
-      break;
-    case "-":
-      result = a - b;
-      break;
-    case "*":
-      result = a * b;
-      break;
-    case "/":
-      result = a / b;
-      break;
-    default:
-      result = "Invalid operation";
-  }
-  return result;
-}
+export { OPERATIONS };
