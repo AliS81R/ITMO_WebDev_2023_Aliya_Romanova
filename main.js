@@ -1,30 +1,52 @@
-import { OPERATIONS } from "./calculate.js";
+const createBlock =(x, y, size, color) => {
+   const result = document.createElement("div");
+    if(color) {
+        result.style.backgroundColor = color;
+    }else{
+        const isEmpty = Math.random() > 0.5;
+        if(isEmpty) {
+            result.style.backgroundColor = "black";
+        }
+    }
+   const randomRange = (max, min) => Math.floor(Math.random() * (max - min) + min)
+   const isEmpty = Math.random() > 0.5;
+   if (isEmpty) {
+   } else  {
+       result.style.backgroundColor ="black";
+   }
+    result.style.width =result.style.height = `${size}px`;
+    result.style.height ="50px";
+    result.style.position ="absolute";
+    result.style.left = `${x}px`;
+    result.style.top = `${y}px`;
+    return result;
+};
 
-const inputNum1 = document.querySelector("#num-1");
-const inputNum2 = document.querySelector("#num-2");
-const btnRes = document.querySelector("#btn-res");
-const selectOperation = document.querySelector("#select-operation");
-const outputRes = document.querySelector("#output");
+const appendBlock = (block) => document.getElementById(("app")).appendChild(block);
 
-selectOperation.innerHTML = "";
+const block = createBlock();
 
-Object.entries(OPERATIONS).forEach(([key, value]) => {
-  console.log(key, value);
-  const option = document.createElement("option");
-  option.value = key;
-  option.textContent = value.title;
-  selectOperation.appendChild(option);
-});
+document.getElementById(("app")).appendChild(block);
 
-btnRes.addEventListener("click", function () {
-  const a = parseInt(inputNum1.value);
-  const b = parseInt(inputNum2.value);
-  const operationKey = selectOperation.value;
-  const operation = OPERATIONS[operationKey];
-  if (operation) {
-    const result = operation.method(a, b);
-    outputRes.innerHTML = result;
-  } else {
-    alert("Wrong operation:", operationKey);
-  }
+const BLOCK_SIZE = 50;
+
+let columns = 5;
+let xPos = 0;
+let yPos = 0;
+
+const line = [];
+
+while (columns-- > 0) {
+    const block = createBlock(xPos, yPos, BLOCK_SIZE);
+    line.push(block);
+    appendBlock(block);
+    xPos += BLOCK_SIZE;
+
+}
+
+line.reverse().forEach((item) => {
+    yPos += BLOCK_SIZE;
+    const block =createBlock(xPos, yPos, BLOCK_SIZE, item.style.background )
+    appendBlock(block);
+
 });
