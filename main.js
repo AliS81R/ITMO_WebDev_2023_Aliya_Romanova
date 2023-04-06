@@ -1,6 +1,6 @@
 const DOM = (id) => document.getElementById(id);
 const appendBlockToContainer = (block, container) => container.appendChild(block);
-const randomRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
+// const randomRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
 const getColorOrEmptyOnRandom = () => {
     const isNotEmpty = Math.random() > 0.5;
     if (isNotEmpty) {
@@ -26,11 +26,13 @@ const DIMENSION = 8;
 const DIMENSION_HALF = DIMENSION / 2;
 const container = DOM("app");
 let columns = 0;
-let rows = 0;
+// let rows = 0;
 let xPos = 0;
 let yPos = 0;
 // while (rows-- > 0) {
+
 let colorsInLine = [];
+
 while (columns < DIMENSION_HALF) {
     const color = getColorOrEmptyOnRandom();
     const block = createBlockWithParamsAtPosition(xPos, yPos, BLOCK_SIZE, color);
