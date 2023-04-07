@@ -8,6 +8,59 @@
   <body
     class="bg-teal-100/50 w-screen h-screen grid place-items-center p-12 font-sans"
   >
+  <div
+          id="popupCreateTask"
+          class="hidden fixed w-screen h-screen top-0 left-0 bg-black/70 z-10 grid place-items-center"
+  >
+    <div class="flex flex-col min-w-[377px] relative bg-white p-6 rounded-2xl gap-y-4">
+      <button id="btnCloseCreateTaskPopup" class="absolute top-4 right-4">
+        <i class="i-material-symbols-cancel-outline absolute top-4 right-4  text-neutral-400 hover:text-neutral-800 text-2xl"></i></button>
+      <div class="flex flex-row">
+        <span class="text-xl font-bold">Create task</span>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex flex-col w-full">
+          <label class="ml-1 text-sm text-neutral-600" for="inpDate">Title: </label>
+          <input
+                  class="bg-neutral-100 p-1.5 rounded w-full border-1 border-neutral-200"
+                  id="inpTitle"
+                  type="text"
+                  placeholder="e.g. Read books"
+          />
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex flex-col w-full">
+          <label class="ml-1 text-sm text-neutral-600" for="inpDate">End date: </label>
+          <input
+                  class="bg-neutral-100 p-1.5 rounded w-full border-1 border-neutral-200"
+                  type="date"
+                  id="inpDate"
+                  name="trip-start"
+                  min="2018-01-01"
+          />
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="flex flex-col w-full">
+          <label for="countries" class="ml-1 text-sm text-neutral-600">Select tag:</label>
+          <select
+                  id="countries"
+                  class="bg-neutral-100 p-1.5 rounded w-full border-1 border-neutral-200 focus:border-none"
+          >
+            <option selected>Choose a tag</option>
+            <option value="web">Web</option>
+            <option value="update">Update</option>
+            <option value="design">Design</option>
+            <option value="content">Content</option>
+          </select>
+        </div>
+      </div>
+      <div id="btnCreateNewTask" class="flex flex-row pt-2">
+        <button class="bg-teal-600 text-white p-2 rounded-lg w-full font-bold">Create</button>
+      </div>
+    </div>
+  </div>
     <div
       class="container flex flex-row w-full h-full bg-gray-200 rounded-3xl p-4"
     >
@@ -27,7 +80,7 @@
           <div class="flex flex-col">
             <div class="flex flex-row items-center gap-x-8">
               <span class="text-neutral-400">Search</span>
-              <button class="px-4 py-2 bg-teal-600 rounded-full">
+              <button id="btnCreateTask" class="px-4 py-2 bg-teal-600 rounded-full">
                 <span class="text-white">+ Create Task</span>
               </button>
             </div>
@@ -63,7 +116,7 @@
         </div>
         <hr />
         <div class="flex flex-row justify-between gap-x-4">
-          <div
+          <div id="TodoTask"
             class="flex flex-col h-full w-1/2 bg-gray-200 border-1 border-gray-300/50 rounded-xl p-2"
           >
             <div class="flex flex-row justify-between py-1 px-1">
@@ -130,5 +183,6 @@
       </main>
     </div>
     <script type="module" src="main.js"></script>
+    <script type="module" src="create-task.js"></script>
   </body>
 </html>
