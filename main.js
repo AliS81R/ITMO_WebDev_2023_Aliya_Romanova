@@ -1,35 +1,26 @@
 import "uno.css";
 import "@unocss/reset/tailwind.css";
 
-
-const domBtnCreateTask = document.getElementById('btnCreateTask');
-const domPopupCreateTask = document.getElementById('popupCreateTask');
+const domBtnCreateTask = document.getElementById("btnCreateTask");
+const domPopupCreateTask = document.getElementById("popupCreateTask");
 
 domBtnCreateTask.onclick = () => {
-    console.log('click');
-    domPopupCreateTask.classList.remove('hidden');
+  console.log("click");
+  domPopupCreateTask.classList.remove("hidden");
 
-    const domBtnCloseCreateTaskPopup = document.getElementById('btnCloseCreateTaskPopup');
+  const domBtnCloseCreateTaskPopup = document.getElementById("btnCloseCreateTaskPopup");
 
-    domBtnCloseCreateTaskPopup.onclick = () => {
-        domPopupCreateTask.classList.add('hidden');
-        domBtnCloseCreateTaskPopup.onclick = null;
-    };
-
+  domBtnCloseCreateTaskPopup.onclick = () => {
+    domPopupCreateTask.classList.add("hidden");
+    domBtnCloseCreateTaskPopup.onclick = null;
+  };
 };
 
-
-const domNewTodoTask = document.getElementById('TodoTask');
-const domBtnCreateNewTask = document.getElementById('btnCreateNewTask');
-
- let tasks = [];
+let tasks = [];
 let todoTasks = [];
 
-if (!localStorage.tasks) {
-    return tasks;
-} else {
-    tasks = JSON.parse(localStorage.getItem('tasks'))
+const rowTasks = localStorage.getItem("tasks");
+
+if (rowTasks) {
+  tasks = JSON.parse(rawTasks);
 }
-
-
-
