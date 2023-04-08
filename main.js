@@ -1,26 +1,56 @@
 import "uno.css";
 import "@unocss/reset/tailwind.css";
+import DOM from "./src/contants/dom";
+import { randomString } from "./src/utils/stringutils";
 
-const domBtnCreateTask = document.getElementById("btnCreateTask");
-const domPopupCreateTask = document.getElementById("popupCreateTask");
+const Tags = ["Web", "Update", "Design", "Content"];
 
-domBtnCreateTask.onclick = () => {
-  console.log("click");
+class TaskVO {
+  constructor(title, date, tag) {
+    this.title = title;
+    this.date = date;
+    this.tag = tag;
+  }
+}
+
+const task = new TaskVO("Read", Date.now(), Tags[0]);
+const getDOM = (id) => document.getElementById(id);
+const QUERY = (container, id) => container.querySelector(`[data-id="${id}"]`);
+
+const tasks = [];
+const domTask = getDOM(DOM.Template.TASK);
+
+getDOM(DOM.Button.CREATE_TASK).onclick = () => {
+  console.log("> domPopupCreateTask.classList");
+
+  const domPopupCreateTask = getDOM(DOM.Popup.CREATE_TASK);
+  const domBtnClose = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CLOSE);
+  const domBtnConfirm = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CONFIRM);
+
   domPopupCreateTask.classList.remove("hidden");
-
-  const domBtnCloseCreateTaskPopup = document.getElementById("btnCloseCreateTaskPopup");
-
-  domBtnCloseCreateTaskPopup.onclick = () => {
+  const onClosePopup = () => {
     domPopupCreateTask.classList.add("hidden");
-    domBtnCloseCreateTaskPopup.onclick = null;
+    domBtnClose.onclick = null;
+    domBtnConfirm.onclick = null;
+  };
+
+  domBtnConfirm.onclick = () => {
+    console.log("confirm");
+    const taskVO = new TaskVO(randomString(12), Date.now(), Tags[0]);
+    const taskView = domTask.cloneNode(true);
+    QUERY(taskView, DOM.Template.Task.TITLE).innerHTML = taskVO.title;
+    domTask.parentNode.prepend(taskView);
+    tasks.push(taskVO);
+    console.log("createTask", taskVO);
+
+    onClosePopup();
   };
 };
 
-let tasks = [];
-let todoTasks = [];
-
-const rowTasks = localStorage.getItem("tasks");
-
-if (rowTasks) {
-  tasks = JSON.parse(rawTasks);
-}
+// let todoTasks = [];
+//
+// const rowTasks = localStorage.getItem("tasks");
+//
+// if (rowTasks) {
+//   tasks = JSON.parse(rowTasks);
+// }
