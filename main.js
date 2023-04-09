@@ -26,6 +26,8 @@ getDOM(DOM.Button.CREATE_TASK).onclick = () => {
   const domPopupCreateTask = getDOM(DOM.Popup.CREATE_TASK);
   const domBtnClose = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CLOSE);
   const domBtnConfirm = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CONFIRM);
+  const domCreateTask = getDOM(DOM.Popup.Input.INFO_TITLE);
+  const domCreateDate = getDOM(DOM.Popup.Input.INFO_DATE);
 
   domPopupCreateTask.classList.remove("hidden");
   const onClosePopup = () => {
@@ -34,34 +36,21 @@ getDOM(DOM.Button.CREATE_TASK).onclick = () => {
     domBtnConfirm.onclick = null;
   };
 
-  //   domBtnConfirm.onclick = () => {
-  //     console.log("confirm");
-  //     const taskVO = new TaskVO(randomString(12), Date.now(), Tags[0]);
-  //     const taskView = domTask.cloneNode(true);
-  //     QUERY(taskView, DOM.Template.Task.TITLE).innerHTML = taskVO.title;
-  //     domTask.parentNode.prepend(taskView);
-  //     tasks.push(taskVO);
-  //     console.log("createTask", taskVO);
-  //
-  //     onClosePopup();
-  //   };
-  // };
-
-  let todoTasks = [];
-
-  let CustomValidation = () => {};
-  CustomValidation.prototype = {
-    invalidate: [],
-  };
-
   domBtnConfirm.onclick = () => {
-    console.log("confirm");
-    const taskVO = new TaskVO(this.title.value, Date.now(), Tags[0]);
+    let titleInfo = domCreateTask.value;
+    domCreateTask.innerHTML = titleInfo;
+    let dateInfo = domCreateDate.value;
+    domCreateDate.innerHTML = dateInfo;
+    let userDate = Date.parse(dateInfo);
+    console.log(dateInfo);
+
+    const taskVO = new TaskVO(titleInfo, userDate, Tags[0]);
     const taskView = domTask.cloneNode(true);
     QUERY(taskView, DOM.Template.Task.TITLE).innerHTML = taskVO.title;
     domTask.parentNode.prepend(taskView);
     tasks.push(taskVO);
-    console.log("createTask", taskVO);
+
+    // console.log("createTask", taskVO);
 
     onClosePopup();
   };
