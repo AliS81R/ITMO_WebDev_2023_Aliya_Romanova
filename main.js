@@ -34,9 +34,29 @@ getDOM(DOM.Button.CREATE_TASK).onclick = () => {
     domBtnConfirm.onclick = null;
   };
 
+  //   domBtnConfirm.onclick = () => {
+  //     console.log("confirm");
+  //     const taskVO = new TaskVO(randomString(12), Date.now(), Tags[0]);
+  //     const taskView = domTask.cloneNode(true);
+  //     QUERY(taskView, DOM.Template.Task.TITLE).innerHTML = taskVO.title;
+  //     domTask.parentNode.prepend(taskView);
+  //     tasks.push(taskVO);
+  //     console.log("createTask", taskVO);
+  //
+  //     onClosePopup();
+  //   };
+  // };
+
+  let todoTasks = [];
+
+  let CustomValidation = () => {};
+  CustomValidation.prototype = {
+    invalidate: [],
+  };
+
   domBtnConfirm.onclick = () => {
     console.log("confirm");
-    const taskVO = new TaskVO(randomString(12), Date.now(), Tags[0]);
+    const taskVO = new TaskVO(this.title.value, Date.now(), Tags[0]);
     const taskView = domTask.cloneNode(true);
     QUERY(taskView, DOM.Template.Task.TITLE).innerHTML = taskVO.title;
     domTask.parentNode.prepend(taskView);
@@ -47,7 +67,6 @@ getDOM(DOM.Button.CREATE_TASK).onclick = () => {
   };
 };
 
-// let todoTasks = [];
 //
 // const rowTasks = localStorage.getItem("tasks");
 //
