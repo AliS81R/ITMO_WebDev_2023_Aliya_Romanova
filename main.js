@@ -27,7 +27,7 @@ getDOM(DOM.Button.CREATE_TASK).onclick = () => {
   const domBtnClose = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CLOSE);
   const domBtnConfirm = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CONFIRM);
   const domCreateTask = getDOM(DOM.Popup.Input.INFO_TITLE);
-  const domCreateDate = getDOM(DOM.Popup.Input.INFO_DATE);
+  const domCreateDate = getDOM(DOM.Popup.Input.USER_DATE);
 
   domPopupCreateTask.classList.remove("hidden");
   const onClosePopup = () => {
@@ -39,12 +39,14 @@ getDOM(DOM.Button.CREATE_TASK).onclick = () => {
   domBtnConfirm.onclick = () => {
     let titleInfo = domCreateTask.value;
     domCreateTask.innerHTML = titleInfo;
-    let dateInfo = domCreateDate.value;
-    domCreateDate.innerHTML = dateInfo;
-    let userDate = Date.parse(dateInfo);
-    console.log(dateInfo);
+    let useDate = () => {
+      let dateInfo;
+      if ((dateInfo = domCreateDate.value === 0)) {
+        return (domCreateDate.innerHTML = "today");
+      }
+    };
 
-    const taskVO = new TaskVO(titleInfo, userDate, Tags[0]);
+    const taskVO = new TaskVO(titleInfo, useDate(), Tags[0]);
     const taskView = domTask.cloneNode(true);
     QUERY(taskView, DOM.Template.Task.TITLE).innerHTML = taskVO.title;
     domTask.parentNode.prepend(taskView);

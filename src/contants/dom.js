@@ -15,6 +15,7 @@ const DOM = {
     Input: {
       INFO_TITLE: "inpTitle",
       INFO_DATE: "inpDate",
+      USER_DATE: "userDate",
       INFO_TAG: "countries",
     },
   },
