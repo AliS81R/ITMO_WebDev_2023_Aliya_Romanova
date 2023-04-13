@@ -18,6 +18,9 @@ const DOM = {
       USER_DATE: "userDate",
       INFO_TAG: "countries",
     },
+    CreateTask: {
+      TITLE: "title",
+    },
   },
 };
 
