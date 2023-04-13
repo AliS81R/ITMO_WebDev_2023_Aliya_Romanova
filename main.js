@@ -36,30 +36,10 @@ domTaskColumn.onclick = (e) => {
   console.log("domTaskColumn", e.target);
 };
 getDOM(DOM.Button.CREATE_TASK).onclick = () => {
-  console.log("> domPopupCreateTask.classList");
-  renderTaskPopup("create task", "Create", () => {
+  console.log("> domPopupContainer.classList");
+  renderTaskPopup("Create task", "Create", () => {
     console.log("on confirm");
   });
-
-  const domPopupCreateTask = getDOM(DOM.Popup.CREATE_TASK);
-  const domBtnClose = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CLOSE);
-  const domBtnConfirm = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CONFIRM);
-  const domInputTitle = getDOM(DOM.Popup.Input.INFO_TITLE);
-  // const domCreateDate = getDOM(DOM.Popup.Input.USER_DATE);
-
-  domPopupCreateTask.classList.remove("hidden");
-  const onClosePopup = () => {
-    domPopupCreateTask.classList.add("hidden");
-    domBtnClose.onclick = null;
-    domBtnConfirm.onclick = null;
-  };
-
-  domBtnConfirm.onclick = () => {
-    let titleInfo = domInputTitle.value;
-    onCreateTaskClick(titleInfo);
-    onClosePopup();
-    renderTaskPopup();
-  };
 };
 
 function onCreateTaskClick(titleInfo) {
@@ -80,8 +60,23 @@ function renderTask(taskVO) {
   domTaskColumn.prepend(domTaskClone);
 }
 
-function renderTaskPopup() {
-  const domPopupCreateTask = getDOM(DOM.Popup.CREATE_TASK);
-  const domBtnClose = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CLOSE);
-  const domBtnConfirm = QUERY(domPopupCreateTask, DOM.Button.POPUP_CREATE_TASK_CONFIRM);
+async function renderTaskPopup(popupTitle, confirmText, confirmCallback) {
+  const domPopupContainer = getDOM(DOM.Popup.CONTAINER);
+  const domSpinner = domPopupContainer.querySelector(".spinner");
+
+  domPopupContainer.classList.remove("hidden");
+
+  const TaskPopup = (await import("./src/view/popup/TaskPopup")).default;
+  const taskPopupInstance = new TaskPopup(popupTitle, Tags, confirmText, confirmCallback, () => {
+    domPopupContainer.innerHTML = "";
+    domPopupContainer.append(domSpinner);
+    domPopupContainer.classList.add("hidden");
+  });
+
+  setTimeout(() => {
+    domSpinner.remove();
+    domPopupContainer.append(taskPopupInstance.render());
+  }, 1000);
+
+  console.log(TaskPopup);
 }

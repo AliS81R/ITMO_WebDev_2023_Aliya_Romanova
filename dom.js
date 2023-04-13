@@ -11,7 +11,7 @@ const DOM = {
     },
   },
   Popup: {
-    CREATE_TASK: "popupCreateTask",
+    CREATE_TASK: "popupContainer",
     Input: {
       INFO_TITLE: "inpTitle",
       INFO_DATE: "inpDate",
