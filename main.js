@@ -1,7 +1,7 @@
 import "uno.css";
 import "@unocss/reset/tailwind.css";
-import DOM from "./src/contants/dom";
-import { randomString } from "./src/utils/stringutils";
+import DOM from "./src/constants/dom";
+import { randomString } from "./src/utils/stringUtils.js";
 
 const KEY_LOCAL_TASKS = "tasks";
 
@@ -18,6 +18,7 @@ class TaskVO {
     this.tag = tag;
   }
 }
+
 const getDOM = (id) => document.getElementById(id);
 const QUERY = (container, id) => container.querySelector(`[data-id="${id}"]`);
 
@@ -30,53 +31,85 @@ const rawTasks = localStorage.getItem(KEY_LOCAL_TASKS);
 
 const tasks = rawTasks ? JSON.parse(rawTasks).map((json) => TaskVO.fromJSON(json)) : [];
 tasks.forEach((taskVO) => renderTask(taskVO));
-console.log("> tasks", tasks);
+console.log("> tasks:", tasks);
 
 domTaskColumn.onclick = (e) => {
+  e.stopPropagation();
   console.log("domTaskColumn", e.target);
-};
-getDOM(DOM.Button.CREATE_TASK).onclick = () => {
-  console.log("> domPopupContainer.classList");
-  renderTaskPopup("Create task", "Create", () => {
-    console.log("on confirm");
+  const taskId = e.target.dataset.id;
+  if (!taskId) {
+    return;
+  }
+
+  const taskVO = tasks.find((task) => task.id === taskId);
+  console.log(">taskVO", taskVO);
+  renderTaskPopup(taskVO, "Update task", "Update", (taskTitle, taskDate, taskTag) => {
+    console.log("> Update task -> On Confirm", {
+      taskTitle,
+      taskDate,
+      taskTag,
+    });
+    taskVO.title = taskTitle;
+
+    saveTasks();
   });
 };
+getDOM(DOM.Button.CREATE_TASK).onclick = () => {
+  console.log("> domPopupCreateTask.classList");
+  renderTaskPopup(null, "Create task", "Create", (taskTitle, taskDate, taskTags) => {
+    console.log("> Main -> CreateTask -> On Confirm");
+    const taskId = `task_${Date.now()}`;
+    const taskVO = new TaskVO(taskId, taskTitle, taskDate, taskTags);
 
-function onCreateTaskClick(titleInfo) {
-  // domInputTitle.innerHTML = titleInfo;
+    renderTask(taskVO);
+    tasks.push(taskVO);
 
-  const taskId = `task_${Date.now()}`;
-  const taskVO = new TaskVO(taskId, titleInfo, Date.now(), Tags[0]);
-
-  renderTask(taskVO);
-  tasks.push(taskVO);
-  localStorage.setItem(KEY_LOCAL_TASKS, JSON.stringify(tasks));
-}
+    saveTasks();
+  });
+};
 
 function renderTask(taskVO) {
   const domTaskClone = domTemplateTask.cloneNode(true);
   domTaskClone.dataset.id = taskVO.id;
-  QUERY(domTaskClone, DOM.Template.Task.TITLE).innerHTML = taskVO.title;
+  QUERY(domTaskClone, DOM.Template.Task.TITLE).innerText = taskVO.title;
   domTaskColumn.prepend(domTaskClone);
 }
 
-async function renderTaskPopup(popupTitle, confirmText, confirmCallback) {
+async function renderTaskPopup(taskVO, popupTitle, confirmText, processDataCallback) {
   const domPopupContainer = getDOM(DOM.Popup.CONTAINER);
   const domSpinner = domPopupContainer.querySelector(".spinner");
 
   domPopupContainer.classList.remove("hidden");
 
-  const TaskPopup = (await import("./src/view/popup/TaskPopup")).default;
-  const taskPopupInstance = new TaskPopup(popupTitle, Tags, confirmText, confirmCallback, () => {
-    domPopupContainer.innerHTML = "";
+  const onClosePopup = () => {
+    domPopupContainer.children[0].remove();
     domPopupContainer.append(domSpinner);
     domPopupContainer.classList.add("hidden");
-  });
+  };
 
-  setTimeout(() => {
-    domSpinner.remove();
-    domPopupContainer.append(taskPopupInstance.render());
-  }, 1000);
+  const TaskPopup = (await import("./src/view/popup/TaskPopup")).default;
+  const taskPopupInstance = new TaskPopup(
+    popupTitle,
+    Tags,
+    confirmText,
+    (taskTitle, taskDate, taskTags) => {
+      console.log("Main -> confirmCallbag", { taskTitle, taskDate, taskTags });
+      onClosePopup();
+      processDataCallback(taskTitle, taskDate, taskTags);
+    },
+    onClosePopup,
+  );
 
-  console.log(TaskPopup);
+  if (taskVO) {
+    taskPopupInstance.taskTitle = taskVO.title;
+  }
+
+  // setTimeout(() => {
+  domSpinner.remove();
+  domPopupContainer.append(taskPopupInstance.render());
+  // }, 1000);
+}
+
+function saveTasks() {
+  localStorage.setItem(KEY_LOCAL_TASKS, JSON.stringify(tasks));
 }
