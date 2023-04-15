@@ -50,7 +50,8 @@ domTaskColumn.onclick = (e) => {
       taskTag,
     });
     taskVO.title = taskTitle;
-
+    const domTaskUpdate = renderTask(taskVO);
+    e.target.parentNode.replaceChild(domTaskUpdate, e.target);
     saveTasks();
   });
 };
@@ -73,6 +74,7 @@ function renderTask(taskVO) {
   domTaskClone.dataset.id = taskVO.id;
   QUERY(domTaskClone, DOM.Template.Task.TITLE).innerText = taskVO.title;
   domTaskColumn.prepend(domTaskClone);
+  return domTaskClone;
 }
 
 async function renderTaskPopup(taskVO, popupTitle, confirmText, processDataCallback) {
