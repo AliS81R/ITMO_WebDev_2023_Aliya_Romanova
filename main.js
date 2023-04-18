@@ -19,6 +19,34 @@ class TaskVO {
   }
 }
 
+const taskOperations = {
+  [DOM.Template.Task.BTN_DELETE]: (taskVO, domTask) => {
+    renderTaskPopup(taskVO, "Confirm delete task", "Delete", (taskTitle, taskDate, taskTag) => {
+      console.log("> Delete task -> On Confirm", {
+        taskTitle,
+        taskDate,
+        taskTag,
+      });
+      tasks.splice(tasks.indexOf(taskVO), 1);
+      domTaskColumn.removeChild(domTask);
+      saveTasks();
+    });
+  },
+  [DOM.Template.Task.BTN_EDIT]: (taskVO, domTask) => {
+    renderTaskPopup(taskVO, "Update task", "Update", (taskTitle, taskDate, taskTag) => {
+      console.log("> Update task -> On Confirm", {
+        taskTitle,
+        taskDate,
+        taskTag,
+      });
+      taskVO.title = taskTitle;
+      const domTaskUpdated = renderTask(taskVO);
+      domTaskColumn.replaceChild(domTaskUpdated, domTask);
+      saveTasks();
+    });
+  },
+};
+
 const getDOM = (id) => document.getElementById(id);
 const QUERY = (container, id) => container.querySelector(`[data-id="${id}"]`);
 
@@ -36,24 +64,35 @@ console.log("> tasks:", tasks);
 domTaskColumn.onclick = (e) => {
   e.stopPropagation();
   console.log("domTaskColumn", e.target);
-  const taskId = e.target.dataset.id;
-  if (!taskId) {
-    return;
-  }
+  const domTaskElement = e.target;
+  const taskBtn = domTaskElement.dataset.btn;
+
+  const isNotTaskBtn = !taskBtn;
+  console.log("isNotTaskBtn", isNotTaskBtn);
+  if (isNotTaskBtn) return;
+
+  const allowedButtons = [DOM.Template.Task.BTN_EDIT, DOM.Template.Task.BTN_DELETE];
+
+  if (!allowedButtons.includes(taskBtn)) return;
+
+  let taskId = null;
+  let btnParent = domTaskElement;
+  let isTaskIdNotFound = false;
+  do {
+    btnParent = btnParent.parentNode;
+    taskId = btnParent.dataset.id;
+    isTaskIdNotFound = !taskId;
+  } while (isTaskIdNotFound);
+
+  console.log("> taskId", taskId);
 
   const taskVO = tasks.find((task) => task.id === taskId);
   console.log(">taskVO", taskVO);
-  renderTaskPopup(taskVO, "Update task", "Update", (taskTitle, taskDate, taskTag) => {
-    console.log("> Update task -> On Confirm", {
-      taskTitle,
-      taskDate,
-      taskTag,
-    });
-    taskVO.title = taskTitle;
-    const domTaskUpdate = renderTask(taskVO);
-    e.target.parentNode.replaceChild(domTaskUpdate, e.target);
-    saveTasks();
-  });
+
+  const operation = taskOperations[taskBtn];
+  if (operation) {
+    operation(taskVO, btnParent);
+  }
 };
 getDOM(DOM.Button.CREATE_TASK).onclick = () => {
   console.log("> domPopupCreateTask.classList");
@@ -108,6 +147,11 @@ async function renderTaskPopup(taskVO, popupTitle, confirmText, processDataCallb
 
   // setTimeout(() => {
   domSpinner.remove();
+  document.onkeyup = (e) => {
+    if (e.key === "Escape") {
+      onClosePopup();
+    }
+  };
   domPopupContainer.append(taskPopupInstance.render());
   // }, 1000);
 }

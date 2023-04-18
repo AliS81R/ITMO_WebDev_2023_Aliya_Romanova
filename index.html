@@ -95,7 +95,7 @@
               id="templateTask"
               class="flex flex-row shadow rounded-lg px-3 py-3 bg-neutral-50 border-1 border-neutral-100"
             >
-              <div class="flex flex-col w-full gap-y-3 pointer-events-none">
+              <div class="flex flex-col w-full gap-y-3">
                 <span data-id="templateTaskTitle" class="font-bold">Layout Design</span>
                 <div class="flex flex-row justify-between">
                   <div class="flex flex-row gap-x-2">
@@ -115,17 +115,26 @@
                     <div class="text-xs text-neutral-400">12 days left</div>
                   </div>
                 </div>
-                <div class="flex flex-row -space-x-2">
-                      <span
-                        class="w-6 h-6 rounded-full bg-green-300 border-2 border-green-500"
-                      ></span>
-                  <span
-                    class="w-6 h-6 rounded-full bg-yellow-300 border-2 border-yellow-500"
+                <div class="flex flex-row justify-between ">
+                  <div class="flex flex-row pointer-events-none -space-x-2">
+                    <span
+                    class="w-6 h-6 rounded-full bg-green-300 border-2 border-green-500"
                   ></span>
-                  <span
-                    class="grid place-items-center w-6 h-6 rounded-full bg-blue-300 border-2 border-blue-500"
-                  ><span class="text-xs font-bold text-blue-600">+2</span></span
-                  >
+                    <span
+                      class="w-6 h-6 rounded-full bg-yellow-300 border-2 border-yellow-500"
+                    ></span>
+                    <span
+                      class="grid place-items-center w-6 h-6 rounded-full bg-blue-300 border-2 border-blue-500"
+                    ><span class="text-xs font-bold text-blue-600">+2</span></span
+                    ></div>
+                  <div class="flex flex-row gap-2">
+                    <button data-btn="btnEdit" class="text-neutral-400 hover:text-neutral-800">
+                      <i class="i-material-symbols-edit block pointer-events-none text-2xl"></i>
+                    </button>
+                    <button data-btn="btnDelete" class="text-neutral-400 hover:text-neutral-800">
+                      <i class="i-material-symbols-delete block  pointer-events-none text-2xl"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
