@@ -1,4 +1,4 @@
-import { randomString } from "../../utils/stringUtils.js";
+import { randomString } from "../../../utils/stringutils.js";
 
 class TaskPopup {
   #title;

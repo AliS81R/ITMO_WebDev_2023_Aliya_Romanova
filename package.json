@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "e2e:open": "cypress open",
     "e2e:run": "npm run build && npm run preview | cypress run",
-    "server:json": "jsons-erver ./db.json -w"
+    "server:json": "json-server ./db.json -w"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.42",
