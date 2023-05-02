@@ -1,9 +1,13 @@
 import "uno.css";
 import "@unocss/reset/tailwind.css";
+import "toastify-js/src/toastify.css";
 import DOM from "./src/constants/dom";
-import { delay } from "./utils/timeUtils.js";
+
+import { delay } from "./src/utils/timeUtils.js";
+
+import Toastify from "toastify-js";
+
 import TasksModel from "./src/mvc/model/TasksModel.js";
-import TaskVO from "./src/mvc/model/TaskVO/TaskVO.js";
 import TasksController from "./src/mvc/controller/TasksController.js";
 
 const KEY_LOCAL_TASKS = "tasks";
@@ -30,32 +34,50 @@ function renderTask(taskVO) {
   return domTaskClone;
 }
 
+const showToastWithText = (text) =>
+  Toastify({
+    text,
+    duration: 3000,
+    close: true,
+  }).showToast();
+
 async function main() {
   tasksModel.addUpdateCallback((tasks) => {
-    console.log("addUpdateCallback", tasks);
+    console.log("> addUpdateCallback: ", tasks);
     domTaskColumn.innerHTML = "";
     tasks.forEach((taskVO) => renderTask(taskVO));
   });
-
-  tasksController.retrieveTasks();
+  tasksController
+    .retrieveTasks()
+    .then(() => {})
+    .catch((e) => {});
 
   const taskOperations = {
     [DOM.Button.CREATE_TASK]: () => {
-      console.log("> domPopupCreateTask.classList");
       renderTaskPopup(
         null,
         "Create task",
         "Create",
         (taskTitle, taskDate, taskTags) => {
-          console.log("> Main -> CreateTask -> On Confirm");
-          tasksController.createTask(taskTitle, taskDate, taskTags);
+          console.log("> Create task -> On Confirm");
+          tasksController
+            .createTask(taskTitle, taskDate, taskTags)
+            .then((taskVO) => {
+              console.log("> Create task -> On Confirm: Success");
+              showToastWithText(`You task saved: ${taskVO.title}`);
+            })
+            .catch((error) => {
+              console.log("> Create task -> On Confirm: Error =", error);
+              window.alert(`Error on server: ${error.toString()}`);
+            });
         },
       );
     },
-    [DOM.Template.Task.BTN_DELETE]: (taskVO, domTask) => {
+    [DOM.Template.Task.BTN_DELETE]: (taskId) => {
+      const taskVO = tasksModel.getTaskById(taskId);
       renderTaskPopup(
         taskVO,
-        "Confirm delete task",
+        "Confirm delete task?",
         "Delete",
         (taskTitle, taskDate, taskTag) => {
           console.log("> Delete task -> On Confirm", {
@@ -63,9 +85,12 @@ async function main() {
             taskDate,
             taskTag,
           });
-          tasks.splice(tasks.indexOf(taskVO), 1);
-          domTaskColumn.removeChild(domTask);
-          saveTasks();
+          tasksController
+            .deleteTask(taskId)
+            .then(() => {
+              showToastWithText(`Task deleted: ${taskVO.title}`);
+            })
+            .catch((e) => {});
         },
       );
     },
@@ -82,9 +107,8 @@ async function main() {
           });
           taskVO.title = taskTitle;
           const domTaskUpdated = renderTask(taskVO);
-
           domTaskColumn.replaceChild(domTaskUpdated, domTask);
-          saveTasks();
+          saveTask();
         },
       );
     },
@@ -97,37 +121,28 @@ async function main() {
     const taskBtn = domTaskElement.dataset.btn;
 
     const isNotTaskBtn = !taskBtn;
-    console.log("isNotTaskBtn", isNotTaskBtn);
     if (isNotTaskBtn) return;
 
     const allowedButtons = [
       DOM.Template.Task.BTN_EDIT,
       DOM.Template.Task.BTN_DELETE,
     ];
-
     if (!allowedButtons.includes(taskBtn)) return;
 
-    let taskId = null;
-    let btnParent = domTaskElement;
-    let isTaskIdNotFound = false;
+    let taskId;
+    let domTask = domTaskElement;
     do {
-      btnParent = btnParent.parentNode;
-      taskId = btnParent.dataset.id;
-      isTaskIdNotFound = !taskId;
-    } while (isTaskIdNotFound);
+      domTask = domTask.parentNode;
+      taskId = domTask.dataset.id;
+    } while (!taskId);
 
-    console.log("> taskId", taskId);
-
-    const taskVO = tasks.find((task) => task.id === taskId);
-    console.log(">taskVO", taskVO);
-
-    const operation = taskOperations[taskBtn];
-    if (operation) {
-      operation(taskVO, btnParent);
-    }
+    const taskOperation = taskOperations[taskBtn];
+    if (taskOperation) taskOperation(taskId);
   };
-  getDOM(DOM.Button.CREATE_TASK).onclick =
-    taskOperations[DOM.Button.CREATE_TASK]();
+
+  getDOM(DOM.Button.CREATE_TASK).addEventListener("click", (e) =>
+    taskOperations[DOM.Button.CREATE_TASK](),
+  );
 
   async function renderTaskPopup(
     taskVO,
@@ -141,6 +156,7 @@ async function main() {
     domPopupContainer.classList.remove("hidden");
 
     const onClosePopup = () => {
+      document.onkeyup = null;
       domPopupContainer.children[0].remove();
       domPopupContainer.append(domSpinner);
       domPopupContainer.classList.add("hidden");
@@ -152,13 +168,13 @@ async function main() {
       Tags,
       confirmText,
       (taskTitle, taskDate, taskTags) => {
-        console.log("Main -> confirmCallbag", {
+        console.log("Main -> renderTaskPopup: confirmCallback", {
           taskTitle,
           taskDate,
           taskTags,
         });
-        onClosePopup();
         processDataCallback(taskTitle, taskDate, taskTags);
+        onClosePopup();
       },
       onClosePopup,
     );
@@ -181,11 +197,9 @@ async function main() {
     console.log("render 0");
   }
 
-  function saveTasks() {
+  function saveTask() {
     localStorage.setItem(KEY_LOCAL_TASKS, JSON.stringify(tasks));
   }
-
-  createTask();
 }
 
 main();
