@@ -6,10 +6,10 @@ class TasksModel {
   set tasks(value) {
     this.#tasks = value;
     this.#updateCallback.forEach((c) => c(this.#tasks));
-    this.#update();
+    this.#notify();
   }
 
-  #update() {
+  #notify() {
     this.#updateCallback.forEach((c) => c(this.#tasks));
   }
   addUpdateCallback(updateCallback) {
@@ -20,16 +20,29 @@ class TasksModel {
     this.#updateCallback.push(updateCallback);
   }
 
-  getTaskBuId(id) {
-    const taskVO = this.#tasks.find((task) => task.id === id);
+  getTaskById(id) {
+    const taskId = parseInt(id);
+    const taskVO = this.#tasks.find((task) => task.id === taskId);
     console.log(">taskModel -> taskVO", taskVO);
     return taskVO;
   }
   addTask(taskVO) {
-    console.log(">TaskController -> addTask:", taskVO);
+    console.log(">TaskModel -> addTask:", taskVO);
     //this.tasks = [...this.#tasks, taskVO];
     this.#tasks.push(taskVO);
-    this.#update();
+    this.#notify();
+  }
+
+  deleteTaskById(id) {
+    const taskId = parseInt(id);
+    this.tasks = this.#tasks.filter((task) => task.id !== taskId);
+  }
+
+  updateTaskById(taskId, data) {
+    console.log(">TaskModel -> updateTaskById:", { taskId, data });
+    const taskVO = this.getTaskById(taskId);
+    Object.assign(taskVO, data);
+    this.#notify();
   }
 }
 
