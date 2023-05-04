@@ -9,7 +9,7 @@ class Position {
     this.y = y;
   }
 }
-
+const R = 30;
 let x = 0,
   y = 0;
 
@@ -19,10 +19,8 @@ const render = () => {
   ctx.beginPath();
   ctx.arc(x, y, 50, 0, Math.PI * 2);
   ctx.fill();
-  x += 1;
-  if (x > canvas.width) {
-    x = 0;
-  }
+  x = R * Math.sin(alpha);
+  y = R * Math.cos(alpha);
 };
 
 window.requestAnimationFrame();
