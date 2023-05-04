@@ -38,12 +38,19 @@ class Planet {
     ctx.closePath();
   }
 }
-
+class Position {
+  x,
+  y,
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
 const planets = [
-  new Planet(200, 200, 0.1, "red", 50),
-  new Planet(200, 200, 0.2, "blue", 100),
-  new Planet(200, 200, 0.3, "green", 150),
-  new Planet(200, 200, 0.3, "gold", 200),
+  new Planet(200, 200, 0.1, 30, "red", 50),
+  new Planet(200, 200, 0.2, 10, "blue", 100),
+  new Planet(200, 200, 0.3, 20, "green", 150),
+  new Planet(200, 200, 0.3, 30, "gold", 200),
 ];
 
 let planet;
