@@ -1,69 +1,37 @@
+import { Planet, Position } from "./src/solar-system.js";
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-class Planet {
-  x;
-  y;
-  size;
-  pX;
-  pY;
-  atmosphere;
-  radius;
-  alpha;
-  speed;
-  constructor(x, y, speed = 0.1, size = 10, atmosphere = "red", radius = 50) {
-    this.size = size;
-    this.pX = x;
-    this.pY = y;
-    this.atmosphere = atmosphere;
-    this.radius = radius;
-    this.speed = speed;
-    this.alpha = 0;
-  }
+let x = 0,
+  y = 0;
 
-  move() {
-    this.x = this.radius * Math.sin(this.alpha) + this.pX;
-    this.y = this.radius * Math.cos(this.alpha) + this.pY;
-    this.alpha += (this.speed * Math.PI) / 180;
-  }
+const R = 130;
+// let SPEED_MULTI = 0.4;
 
-  render(ctx) {
-    ctx.beginPath();
-    ctx.fillStyle = this.atmosphere;
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.closePath();
-  }
-}
-class Position {
-  x,
-  y,
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-}
+let alpha = 0;
+
+const centerPosition = new Position(canvas.width / 2, canvas.height / 2);
+const sun = new Planet(centerPosition, 0, 10, "red", 100, 0.4);
+const earth = new Planet(sun.position, 2.2, 10, "blue", 200, 1.9);
 const planets = [
-  new Planet(200, 200, 0.1, 30, "red", 50),
-  new Planet(200, 200, 0.2, 10, "blue", 100),
-  new Planet(200, 200, 0.3, 20, "green", 150),
-  new Planet(200, 200, 0.3, 30, "gold", 200),
+  sun,
+  earth,
+  new Planet(centerPosition, 60, "gray", 300, 0.7),
+  new Planet(centerPosition, 35, "yellow", 330, 0.8),
 ];
-
-let planet;
 
 const render = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
   for (const planetIndex in planets) {
-    planet = planets[planetIndex];
+    let planet = planets[planetIndex];
     planet.move();
     planet.render(ctx);
   }
+
   window.requestAnimationFrame(render);
 };
-
 window.requestAnimationFrame(render);
