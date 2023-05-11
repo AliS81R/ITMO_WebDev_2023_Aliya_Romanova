@@ -7,7 +7,7 @@
     </span>
   </div>
   <small>
-    <span>
+    <span :class="status ? 'selected' : 'unselected'">
       <h2>
         Status:
       </h2>
@@ -15,7 +15,9 @@
     <span>{{ status }}</span>
     <div>
       <button
-        :disabled="!status"
+        :style="{
+          visibility: status ? 'visible' : 'hidden'
+        }"
         @click="onResetClick"
       >
         Reset
@@ -49,5 +51,10 @@ export default {
 </script>
 
 <style scoped>
-
+.selected {
+  color: green;
+}
+.unselected {
+  color: red;
+}
 </style>
