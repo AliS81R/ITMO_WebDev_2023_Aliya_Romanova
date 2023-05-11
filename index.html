@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--    <iconify-icon data-icon="mdi: home"> </iconify-icon>-->
-    <title>Home work(task3)</title>
-    <style>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--    <iconify-icon data-icon="mdi: home"> </iconify-icon>-->
+  <title>Home work(task3)</title>
+  <style>
       @tailwind base;
       @tailwind components;
       @tailwind utilities;
       @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;700;800&family=Montserrat:wght@500&display=swap');
-    </style>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  </head>
-  <body class="flex h-screen flex-row justify-center items-center bg-black">
-    <div class="w-96 h-96 p-4 bg-stone-900">
-      <div class="flex flex-row justify-between">
-        <div class="flex flex-col"><p class="text-white">
-          <iconify-icon icon="cryptocurrency-color:bnb"></iconify-icon>
-        </p></div>
-        <div class="flex flex-col"><p class="text-white">28 Nov 2019</p></div>
+  </style>
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+</head>
+<body class="flex h-screen flex-row justify-center items-center bg-black">
+<div class="w-96 h-96 p-4 bg-stone-900">
+  <div class="flex flex-col h-full justify-between">
+    <div class="flex flex-row justify-between"> <!-- string and date-->
+      <div class="flex flex-col">
+        <span class="iconify" data-icon="mdi:youtube" style="font-size: 3rem; color: red;"></span>
       </div>
-      <div class="flex flex-row">
-        <p class="text-white">Asia Pacific</p>
+      <div class="flex flex-col">
+        <p class="text-white">
+          28 Nov 2019
+        </p>
       </div>
-      <div class="flex flex-row">
-        <p class="text-white font-bold">Yellow Dot Design Award</p>
-      </div>
-      <div class="flex flex-row font-bold">
-        <p class="text-white">2019-20</p>
-      </div>
-      <div class="flex flex-row justify-between">
-        <div class="flex flex-col"><p class="text-white">United Nation</p></div>
-        <div class="flex flex-col w-36 m-0 p-0">
-          <img src="./public/figure-3.png" alt="">
-        </div>
-      </div>
-
     </div>
+    <div class="flex flex-row"><!--string-->
+      <p class="text-white">Asia Pacific</p>
+    </div>
+    <div class="flex flex-row"><!--string-->
+      <p class="text-white font-bold">Yellow Dot Design Award</p>
+    </div>
+    <div class="flex flex-row font-bold"><!--string-->
+      <p class="text-white">2019-20</p>
+    </div>
+    <div class="flex flex-row justify-between"><!--string and image-->
+      <div class="flex flex-col"><p class="text-white">United Nation</p></div>
+      <div class="flex flex-col w-36 m-0 p-0">
+        <img src="./public/figure-3.png" alt="">
+      </div>
+    </div>
+  </div>
 
-  </body>
+</div>
+
+</body>
 
 </html>
