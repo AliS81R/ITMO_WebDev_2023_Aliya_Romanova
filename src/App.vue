@@ -45,7 +45,7 @@ export default {
     },
     deletedTodos(index) {
       console.log('> App -> deletedTodos');
-      this.todos.splice(index);
+      this.todos.splice(index, 1);
     }
   }
 };
