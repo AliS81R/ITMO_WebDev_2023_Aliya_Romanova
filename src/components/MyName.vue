@@ -4,17 +4,47 @@
     {{ firstName }}
     <span style="color: red">
       {{ lastName }}
-    </span> 
+    </span>
   </div>
+  <small>
+    <span>
+      <h2>
+        Status:
+      </h2>
+    </span>
+    <span>{{ status }}</span>
+    <div>
+      <button
+        :disabled="!status"
+        @click="onResetClick"
+      >
+        Reset
+      </button>
+    </div>
+  </small>
 </template>
 
 <script>
 export default {
   name: "MyName",
+  props: {
+    status: {
+      type: String,
+      default: 'empty'
+    },
+  },
+  emits: ['reset'],
   data: () => ({
     firstName: 'Aliya',
     lastName: 'Romanova'
-  })
+  }),
+  methods: {
+    onResetClick() {
+      console.log('> MyName -> onResetClick');
+      this.$emit('reset');
+    }
+  }
+
 };
 </script>
 
