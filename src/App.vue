@@ -16,7 +16,11 @@ import MyName from './components/MyName.vue'
     >
       {{ index + 1 }}) {{ value }}
       <div>
-        <button>x</button>
+        <button
+          @click="deletedTodos(index)"
+        >
+          x
+        </button>
       </div>
     </div>
   </div>
@@ -39,6 +43,10 @@ export default {
       this.todos.push(this.todoText);
       this.inputText = '';
     },
+    deletedTodos(index) {
+      console.log('> App -> deletedTodos');
+      this.todos.splice(index);
+    }
   }
 };
 </script>
