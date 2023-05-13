@@ -26,7 +26,7 @@ import AppHeader from "./components/AppHeader.vue";</script>
       @delete="deletedTodos(index)"
     />
   </div>
-</template>
+</template> 
 <script>
 
 
@@ -45,11 +45,12 @@ export default {
     canAddItemToTheList() {
       return this.todoText.length >0;
     },
-    getTodoCount() {
-      return this.todos.length > 10 ? 'many' : this.todos.length
-    },
     todoText() {return this.inputText?.trim(); }
   },
+  getTodoCount() {
+    return this.todos.length > 10 ? 'many' : this.todos.length },
+  todoText() {return this.inputText?.trim()},
+
   unmounted() {
     todoStopWatch();
   },
@@ -60,20 +61,14 @@ export default {
     const rawTodos = localStorage.getItem(LOCAL_KEY_TODOS);
     console.log('> App -> created rawTodos =', rawTodos);
     if(rawTodos){
-      this.todos = JSON.parse(rawTodos);
+    this.todos = JSON.parse(rawTodos);
     }
     this.inputText= JSON.parse(localStorage.getItem(LOCAL_INPUT_TEXT) || '""');
 
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
-      .then((response) => response.json())
-      .then((rawDataList) => this.todos.push(...rawDataList.slice(0, 5).map((item) => item.title)))
-      .catch(e=>{
-        console.log(e);});
-
     todoStopWatch = this.$watch(() => this.todos, (value) => {
-        console.log('> App -> watch: todos =', value);
-        localStorage.setItem(LOCAL_KEY_TODOS, JSON.stringify(value));
-      },
+      console.log('> App -> watch: todos =', value);
+      localStorage.setItem(LOCAL_KEY_TODOS, JSON.stringify(value));
+    },
       {deep: true});
     this.$watch(() => this.inputText, (value) => {
         console.log('> App -> watch: inputText =', value);
