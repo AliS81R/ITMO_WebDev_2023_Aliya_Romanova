@@ -1,0 +1,41 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\alia9\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\Users\alia9\AppData\Local\Microsoft\WindowsApps;C:\Users\alia9\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\alia9\AppData\Roaming\npm;C:\Users\alia9\AppData\Roaming\nvm;C:\Program Files\nodejs
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  19.7.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'C:\Users\alia9\OneDrive\Рабочий стол\ITMO_WebDev_2023_Aliya_Romanova\node_modules\@esbuild\win32-x64\esbuild.exe'
+
+npm manifest: 
+  {
+    "name": "itmo-webdev-2023-aliya-romanova",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build && surge ./dist great-transport-itmo-2023-romanova.surge.sh",
+      "preview": "vite preview"
+    },
+    "devDependencies": {
+      "prettier": "^2.8.4",
+      "vite": "^4.1.0",
+      "vite-plugin-mkcert": "^1.13.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
