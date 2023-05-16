@@ -9,6 +9,7 @@ const LOCAL_INPUT_TEXT = 'input_Text';
 
 const parseLocalStorage = (key, alt) => JSON.parse(localStorage.getItem(key) || JSON.stringify(alt));
 
+const user = ref({name: 'AliS'});
 const inputText = ref(parseLocalStorage((LOCAL_INPUT_TEXT),''));
 const todos = ref(parseLocalStorage((LOCAL_KEY_TODOS),[]));
 // console.log('todos', todos.value);
@@ -41,13 +42,13 @@ onMounted((value) => {
 </script>
 
 <template>
-  <!--  <AppHeader>-->
-  <!--    Todo App-->
-  <!--    <template #sub-header>-->
-  <!--      <span v-if="user">created by {{ user.name }}</span>-->
-  <!--      <span v-else>noname</span>-->
-  <!--    </template>-->
-  <!--  </AppHeader>-->
+  <AppHeader>
+    Todo App
+    <template #sub-header>
+      <span v-if="user">created by {{ user.name }}</span>
+      <span v-else>noname</span>
+    </template>
+  </AppHeader>
   <input
     ref="domInput"
     v-model="inputText"
