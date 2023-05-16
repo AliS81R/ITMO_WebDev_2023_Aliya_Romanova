@@ -1,5 +1,5 @@
 <script setup>
-import TodoItem from "../TodoItem.vue";
+import TodoItem from "./components/TodoItem.vue";
 import AppHeader from "./components/AppHeader.vue";</script>
 
 <template>
@@ -26,6 +26,7 @@ import AppHeader from "./components/AppHeader.vue";</script>
       @delete="deletedTodos(index)"
     />
   </div>
+  <router-view />
 </template>
 <script>
 
