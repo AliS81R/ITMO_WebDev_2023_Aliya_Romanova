@@ -5,11 +5,11 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import("./components/TodosPage.vue")
+      component: () => import("./components/IndexPage.vue")
     },
     {
       path: '/todos',
-      component: () => import("./components/IndexPage.vue")
+      component: () => import("./components/TodosPage.vue")
     },
     {
       path: '/todos/:id',

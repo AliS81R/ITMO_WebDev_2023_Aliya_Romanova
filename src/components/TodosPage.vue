@@ -2,14 +2,13 @@
 
 import TodoItem from "./TodoItem.vue";
 import { parseLocalStorage, saveToLocalStorage } from "../utils/StorageUtils.js";
+import { computed, ref, watch } from "vue";
+import {todos} from "../store/todosStore.js";
 
 const LOCAL_KEY_TODOS = 'todos';
 const LOCAL_INPUT_TEXT = 'input_Text';
 
-
 const inputText = ref(parseLocalStorage((LOCAL_INPUT_TEXT),''));
-const todos = ref(parseLocalStorage((LOCAL_KEY_TODOS),[]));
-// console.log('todos', todos.value);
 
 const canAddItemToTheList = computed(() => true);
 const getTodoCount = computed(() => todos.value?.length)
@@ -58,7 +57,7 @@ watch(todos, (v) => saveToLocalStorage(LOCAL_KEY_TODOS, v), {deep: true});
 
 
 <script>
-import { computed, ref, watch } from "vue";
+
 
 export default {
   name: "TodosPage"

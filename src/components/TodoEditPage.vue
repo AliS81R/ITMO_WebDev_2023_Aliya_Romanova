@@ -1,12 +1,15 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from "vue";
+import { todos } from "../store/todosStore.js";
 
 
 const router = useRouter();
 const route = useRoute();
 
 const status = ref(route.query.status);
+
+const todo = ref(todos.value[parseInt(route.params.id) - 1]);
 const onSelectChange = ({ target }) => {
   console.log('> TodoEditPage -> onSelectChange: ', target.value);
   status.value = target.value;
@@ -19,7 +22,7 @@ const onMounted = () => {
 </script>
 <template>
   <div>
-    Todo Edit Page {{ route.params.id }}
+    Todo Edit Page {{ route.params.id }} {{ todo }}
   </div>
   <select
     name="status"
