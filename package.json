@@ -2,7 +2,7 @@
   "name": "itmo_webdev_2023_aliya_romanova",
   "description": "IDE Webshorm and VS Code",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
