@@ -1,4 +1,3 @@
-import "uno.css";
 import "@unocss/reset/tailwind.css";
 import "toastify-js/src/toastify.css";
 import DOM from "./src/constants/dom";
@@ -22,7 +21,8 @@ const domTaskColumn = domTemplateTask.parentNode;
 
 const tasksModel = new TasksModel();
 const tasksController = new TasksController(tasksModel);
-
+mport "uno.css";
+i
 domTemplateTask.removeAttribute("id");
 domTemplateTask.remove();
 
@@ -79,127 +79,33 @@ async function main() {
         taskVO,
         "Confirm delete task?",
         "Delete",
-        (taskTitle, taskDate, taskTag) => {
-          console.log("> Delete task -> On Confirm", {
-            taskTitle,
-            taskDate,
-            taskTag,
-          });
-          tasksController
-            .deleteTask(taskId)
-            .then(() => {
-              showToastWithText(`Task deleted: ${taskVO.title}`);
-            })
-            .catch((e) => {});
-        },
-      );
-    },
-    [DOM.Template.Task.BTN_EDIT]: (taskVO, domTask) => {
-      renderTaskPopup(
-        taskVO,
-        "Update task",
-        "Update",
-        (taskTitle, taskDate, taskTag) => {
-          console.log("> Update task -> On Confirm", {
-            taskTitle,
-            taskDate,
-            taskTag,
-          });
-          taskVO.title = taskTitle;
-          const domTaskUpdated = renderTask(taskVO);
-          domTaskColumn.replaceChild(domTaskUpdated, domTask);
-          saveTask();
-        },
-      );
-    },
-  };
+      import { OPERATIONS } from "./calculate.js";
 
-  domTaskColumn.onclick = (e) => {
-    e.stopPropagation();
-    console.log("domTaskColumn", e.target);
-    const domTaskElement = e.target;
-    const taskBtn = domTaskElement.dataset.btn;
+      const inputNum1 = document.querySelector("#num-1");
+      const inputNum2 = document.querySelector("#num-2");
+      const btnRes = document.querySelector("#btn-res");
+      const selectOperation = document.querySelector("#select-operation");
+      const outputRes = document.querySelector("#output");
 
-    const isNotTaskBtn = !taskBtn;
-    if (isNotTaskBtn) return;
+      selectOperation.innerHTML = "";
 
-    const allowedButtons = [
-      DOM.Template.Task.BTN_EDIT,
-      DOM.Template.Task.BTN_DELETE,
-    ];
-    if (!allowedButtons.includes(taskBtn)) return;
+      Object.entries(OPERATIONS).forEach(([key, value]) => {
+        console.log(key, value);
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = value.title;
+        selectOperation.appendChild(option);
+      });
 
-    let taskId;
-    let domTask = domTaskElement;
-    do {
-      domTask = domTask.parentNode;
-      taskId = domTask.dataset.id;
-    } while (!taskId);
-
-    const taskOperation = taskOperations[taskBtn];
-    if (taskOperation) taskOperation(taskId);
-  };
-
-  getDOM(DOM.Button.CREATE_TASK).addEventListener("click", (e) =>
-    taskOperations[DOM.Button.CREATE_TASK](),
-  );
-
-  async function renderTaskPopup(
-    taskVO,
-    popupTitle,
-    confirmText,
-    processDataCallback,
-  ) {
-    const domPopupContainer = getDOM(DOM.Popup.CONTAINER);
-    const domSpinner = domPopupContainer.querySelector(".spinner");
-
-    domPopupContainer.classList.remove("hidden");
-
-    const onClosePopup = () => {
-      document.onkeyup = null;
-      domPopupContainer.children[0].remove();
-      domPopupContainer.append(domSpinner);
-      domPopupContainer.classList.add("hidden");
-    };
-
-    const TaskPopup = (await import("./src/mvc/view/popup/TaskPopup")).default;
-    const taskPopupInstance = new TaskPopup(
-      popupTitle,
-      Tags,
-      confirmText,
-      (taskTitle, taskDate, taskTags) => {
-        console.log("Main -> renderTaskPopup: confirmCallback", {
-          taskTitle,
-          taskDate,
-          taskTags,
-        });
-        processDataCallback(taskTitle, taskDate, taskTags);
-        onClosePopup();
-      },
-      onClosePopup,
-    );
-
-    if (taskVO) {
-      taskPopupInstance.taskTitle = taskVO.title;
-    }
-
-    delay(1000).then(() => {
-      console.log("render 1");
-      domSpinner.remove();
-      document.onkeyup = (e) => {
-        if (e.key === "Escape") {
-          onClosePopup();
+      btnRes.addEventListener("click", function () {
+        const a = parseInt(inputNum1.value);
+        const b = parseInt(inputNum2.value);
+        const operationKey = selectOperation.value;
+        const operation = OPERATIONS[operationKey];
+        if (operation) {
+          const result = operation.method(a, b);
+          outputRes.innerHTML = result;
+        } else {
+          alert("Wrong operation:", operationKey);
         }
-      };
-      domPopupContainer.append(taskPopupInstance.render());
-    });
-
-    console.log("render 0");
-  }
-
-  function saveTask() {
-    localStorage.setItem(KEY_LOCAL_TASKS, JSON.stringify(tasks));
-  }
-}
-
-main();
+      });
