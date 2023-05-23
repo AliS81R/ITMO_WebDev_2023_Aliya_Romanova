@@ -34,20 +34,23 @@ let rows = 0;
 let yPos = 0;
 let xPos = 0;
 
-// while (rows-- > 0) {
-
-let halfLineColors = [];
-
-while (columns < DIMENSION_HALF) {
-  const color = getColorOrEmptyOnRandom();
-  const block = createBlock(xPos, yPos, BLOCK_SIZE, color);
-  halfLineColors.push(color);
-  appendBlockToContainer(block, container);
-  xPos += STEP_DELTA_X;
-  columns += 1;
+while (rows++ < DIMENSION) {
+  xPos = 0;
+  columns = 0;
+  console.log('row/col', rows, columns);
+  let halfLineColors = [];
+  while (columns < DIMENSION_HALF) {
+    const color = getColorOrEmptyOnRandom();
+    const block = createBlock(xPos, yPos, BLOCK_SIZE, color);
+    halfLineColors.push(color);
+    appendBlockToContainer(block, container);
+    xPos += STEP_DELTA_X;
+    columns += 1;
+  }
+  halfLineColors.reverse().forEach((color, index) => {
+    const block = createBlock(xPos, yPos, BLOCK_SIZE, color);
+    appendBlockToContainer(block, container);
+    xPos += STEP_DELTA_X;
+  });
+  yPos += BLOCK_SIZE;
 }
-const rightHalfOffsetX = (DIMENSION / 2) + BLOCK_SIZE;
-halfLineColors.reverse().forEach((color, index) => {
-  const block = createBlock(BLOCK_SIZE * (index + rightHalfOffsetX), yPos, BLOCK_SIZE, color);
-  appendBlockToContainer(block, container);
-});
