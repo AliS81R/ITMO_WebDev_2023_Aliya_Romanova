@@ -22,7 +22,7 @@ const createBlock = (x, y, size, color) => {
   return result;
 };
 
-const BLOCK_SIZE = 50;
+const BLOCK_SIZE = 30;
 const STEP_DELTA_X = BLOCK_SIZE;
 const DIMENSION = 8;
 const DIMENSION_HALF = DIMENSION / 2;
@@ -53,4 +53,6 @@ while (rows++ < DIMENSION) {
     xPos += STEP_DELTA_X;
   });
   yPos += BLOCK_SIZE;
+  
 }
+
