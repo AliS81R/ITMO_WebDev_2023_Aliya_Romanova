@@ -6,7 +6,7 @@ require('dotenv').config();
 console.log(process.env.USER_KEY);
 
 app.use(fileUpload());
-aapp.get('/', async (req, res) => {
+app.get('/', async (req, res) => {
   res.send(`<h2>Working!</h2>
         <form action="/upload" method="POST" encType="multipart/form-data">
             <label for="img">Choose a profile picture:</label>
