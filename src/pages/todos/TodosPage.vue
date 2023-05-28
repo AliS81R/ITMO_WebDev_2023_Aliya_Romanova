@@ -1,10 +1,11 @@
 <script setup>
 
-import TodoItem from "./TodoItem.vue";
-import { parseLocalStorage, saveToLocalStorage } from "../utils/StorageUtils.js";
-import { computed, onMounted, ref, watch } from "vue";
-import { useTodosStore } from "../store/todosStore.js";
-import { storeToRefs } from "pinia";
+import TodoItem from '@/components/TodoItem.vue';
+import { parseLocalStorage, saveToLocalStorage } from '@/utils/StorageUtils.js';
+import { computed, onMounted, ref, watch } from 'vue';
+
+import { useTodosStore } from '@/store/todosStore.js';
+import { storeToRefs } from 'pinia';
 
 const LOCAL_INPUT_TEXT = 'input_Text';
 
@@ -30,7 +31,7 @@ const onDeleteTodo = (index) => {
 watch(inputText, (v) => saveToLocalStorage(LOCAL_INPUT_TEXT, v));
 onMounted(() => {
   console.log('> onMounted -> getTodosCount', getTodosCount);
-})
+});
 </script>
 
 <template>
@@ -64,7 +65,7 @@ onMounted(() => {
 
 
 export default {
-  name: "TodosPage"
+  name: 'TodosPage'
 };
 </script>
 

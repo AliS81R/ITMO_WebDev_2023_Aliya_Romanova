@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from "vue";
-import { useTodosStore } from "../store/todosStore.js";
+import { useTodosStore } from "../../store/todosStore.js";
 
 const router = useRouter();
 const route = useRoute();

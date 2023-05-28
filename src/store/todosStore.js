@@ -1,13 +1,14 @@
-import { computed, ref } from "vue";
-import { parseLocalStorage } from "../utils/StorageUtils.js";
-import { defineStore } from "pinia";
+import { computed, ref } from 'vue';
+import { parseLocalStorage } from '../utils/StorageUtils.js';
+import { defineStore } from 'pinia';
 
-const log = (method, message) => console.log(`> useTodoStore -> ${method}:`, message)
+const log = (method, message) => console.log(`> useTodoStore -> ${method}:`, message);
 export const useTodosStore = defineStore('todos', {
   state: () => ({ todos: [] }),
   getters: {
     getTodosCount: (state) => state.todos.length,
     getTodoByIndex: (state) => {
+      state.todos = undefined;
       return (index) => state.todos[index];
     },
   },

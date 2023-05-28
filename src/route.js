@@ -1,37 +1,47 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import { useUserStore } from "./store/userStore.js";
+import { createRouter, createWebHashHistory } from 'vue-router';
+import { useUserStore } from './store/userStore.js';
+import ROUTES from './constants/routes.js';
+import { inject } from 'vue';
+import PROVIDE from '@/constants/provides.js';
 
 const PAGE_NAME__SIGN_IN = 'siginPage';
-const PAGE_URL__SIGN_IN = '/signin';
+const PAGE_URL__SIGN_IN = '/sigin';
 
-const router = createRouter({
+let router;
+router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: '/',
-      component: () => import("./components/IndexPage.vue")
+      path: ROUTES.INDEX,
+      component: () => import('./pages/IndexPage.vue')
     },
     {
-      path: '/todos',
-      component: () => import("./components/TodosPage.vue")
+      path: ROUTES.TODOS,
+      component: () => import('./pages/todos/TodosPage.vue')
     },
     {
-      path: '/todos/:id',
-      component: () => import("./components/TodoEditPage.vue")
+      path: ROUTES.TODOS_ID,
+      component: () => import('./pages/todos/TodoEditPage.vue')
     },
     {
-      name: PAGE_NAME__SIGN_IN,
-      path: PAGE_URL__SIGN_IN,
-      component: () => import("./components/SiginPage.vue")
+      path: ROUTES.SIGIN,
+      component: () => import('./pages/SiginPage.vue')
     }
-  ],
+  ]
 });
 
 router.beforeEach((to, from, next) => {
   console.log('> router -> beforeEach', to.path);
-  const publicPages = ['/', PAGE_URL__SIGN_IN];
-  const notAllowedNavigation = !publicPages.includes(to.path) && !useUserStore().hasUser;
-  if (notAllowedNavigation) next({ name: PAGE_NAME__SIGN_IN });
+  const publicPages = [ROUTES.INDEX, ROUTES.SIGIN];
+  const pb = inject(PROVIDE_PB);
+  const notAllowedNavigation =
+    publicPages.indexOf(to.path) < 0
+    && !pb.authStore.isValid;
+
+  console.log('>router -> beforeEach', to.path, {notAllowedNavigation});
+
+  if (notAllowedNavigation)
+    next({ path: ROUTES.SIGIN});
   else next();
 });
 
