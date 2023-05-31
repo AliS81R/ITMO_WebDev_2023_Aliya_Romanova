@@ -18,8 +18,12 @@ const onRegister = (dto) => {
       passwordConfirm: dto.password,
     }).catch((error) => {
       const errorData = error.data.data;
-      for(const item )
-    })
+      for(const item in error.data){
+        const data = errorData[item];
+        console.log('>item', item);
+        errors.value.push(data.message);
+      }
+    });
   }
 };
 
