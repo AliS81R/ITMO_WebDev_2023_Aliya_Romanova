@@ -1,8 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { useUserStore } from './store/userStore.js';
-import ROUTES from './constants/routes.js';
+import ROUTES, { PUBLIC_PAGES } from './constants/routes.js';
 import { inject } from 'vue';
 import PROVIDE from '@/constants/provides.js';
+
 
 const PAGE_NAME__SIGN_IN = 'siginPage';
 const PAGE_URL__SIGN_IN = '/sigin';
@@ -25,17 +26,19 @@ router = createRouter({
     },
     {
       path: ROUTES.SIGIN,
-      component: () => import('./pages/SiginPage.vue')
+      component: () => import('./pages/SigInPage.vue')
+    },
+    {path: ROUTES.SIGUP,
+      component: () => import('./pages/SignUpPage.vue')
     }
   ]
 });
 
 router.beforeEach((to, from, next) => {
   console.log('> router -> beforeEach', to.path);
-  const publicPages = [ROUTES.INDEX, ROUTES.SIGIN];
   const pb = inject(PROVIDE_PB);
   const notAllowedNavigation =
-    publicPages.indexOf(to.path) < 0
+    PUBLIC_PAGES.indexOf(to.path) < 0
     && !pb.authStore.isValid;
 
   console.log('>router -> beforeEach', to.path, {notAllowedNavigation});

@@ -5,6 +5,9 @@ import RegistrationForm from '@/components/RegistrationForm.vue';
 <template>
   <div>
     <RegistrationForm />
+    <router-link to="ROUTES.SIGNIN">
+      Sign In
+    </router-link>
   </div>
 </template>
 
