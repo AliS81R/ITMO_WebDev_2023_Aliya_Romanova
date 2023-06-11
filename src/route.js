@@ -5,7 +5,7 @@ import { inject } from 'vue';
 import PROVIDE from '@/constants/provides.js';
 
 
-const PAGE_NAME__SIGN_IN = 'siginPage';
+const PAGE_NAME__SIGN_IN = 'sigInPage';
 // const PAGE_URL__SIGN_IN = '/sigin';
 
 let router;
@@ -34,7 +34,7 @@ router = createRouter({
   ]
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, next) => {
   console.log('> router -> beforeEach', to.path);
   const pb = inject(PROVIDE.PB);
   console.log('pb.authStore', pb.authStore);
