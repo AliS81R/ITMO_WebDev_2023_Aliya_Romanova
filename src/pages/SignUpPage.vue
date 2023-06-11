@@ -20,12 +20,13 @@ const onRegister = (dto) => {
       password: dto.password,
       passwordConfirm: dto.password
     }).then((record) => {
-      pb.authStore.save();
+      pb.authStore.save(record.id, record);
       console.log('SignUpPage onRegister: result = ', record);
       if (window.confirm(`User created with ID: ${record.id}`)) {
         router.replace({ path: ROUTES.INDEX });
       }
     }).catch((error) => {
+      const errorData = error.data.data;
       console.log('SignUpPage onRegister: error = ', { error, errorData });
       if (errorData) {
         const errorData = error.data.data;

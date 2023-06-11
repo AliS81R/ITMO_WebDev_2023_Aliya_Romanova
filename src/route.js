@@ -6,7 +6,7 @@ import PROVIDE from '@/constants/provides.js';
 
 
 const PAGE_NAME__SIGN_IN = 'siginPage';
-const PAGE_URL__SIGN_IN = '/sigin';
+// const PAGE_URL__SIGN_IN = '/sigin';
 
 let router;
 router = createRouter({
