@@ -14,6 +14,6 @@ console.log('pb.authStore.isValid:', pb.authStore.isValid);
 
 createApp(AppComposition)
   .use(createPinia().use(piniaPluginPersistedState))
-  .use(PROVIDE.PB, pb)
+  .provide(PROVIDE.PB, pb)
   .use(router)
   .mount('#app');
