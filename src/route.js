@@ -37,9 +37,10 @@ router = createRouter({
 router.beforeEach((to, from, next) => {
   console.log('> router -> beforeEach', to.path);
   const pb = inject(PROVIDE.PB);
+  console.log('pb.authStore', pb.authStore);
   const notAllowedNavigation =
-    PUBLIC_PAGES.indexOf(to.path) < 0
-    && !pb.authStore.isValid;
+PUBLIC_PAGES.indexOf(to.path) < 0
+    && !pb.authStore.model?.id;
 
   console.log('>router -> beforeEach', to.path, {notAllowedNavigation});
 

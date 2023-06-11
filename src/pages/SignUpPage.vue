@@ -5,19 +5,22 @@ import { inject, ref } from 'vue';
 import PROVIDE from '@/constants/provides.js';
 import router from '@/route.js';
 
-const errors = ref([]);
+//const router = useRouter();
 const pb = inject(PROVIDE.PB);
+const errors = ref([]);
+
 const onRegister = (dto) => {
   console.log('>SignUpPage --onRegister:', dto);
 
   if (!dto.password || dto.password.length === 0) {
     errors.value = ['Password required'];
   } else {
-    pb.collation('users').create({
+    pb.collection('users').create({
       username: dto.username,
       password: dto.password,
       passwordConfirm: dto.password
     }).then((record) => {
+      pb.authStore.save();
       console.log('SignUpPage onRegister: result = ', record);
       if (window.confirm(`User created with ID: ${record.id}`)) {
         router.replace({ path: ROUTES.INDEX });
