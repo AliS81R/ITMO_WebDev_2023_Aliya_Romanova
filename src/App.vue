@@ -18,9 +18,6 @@ pb.authStore.onChange(() => {
 });
 const hasUser = computed(()=> !!user.value);
 
-//
-
-
 const checkRouteIsNotCurrent =(routePath) => useRoute().path !== routePath;
 
 const menuLinks = reactive([

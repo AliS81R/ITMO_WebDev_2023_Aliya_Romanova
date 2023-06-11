@@ -16,6 +16,7 @@ defineProps({
       <router-link
         v-if="menuItem.canRender"
         :to="menuItem.link"
+        @click="menuItem.onClick"
       >
         {{ menuItem.name }}
       </router-link>

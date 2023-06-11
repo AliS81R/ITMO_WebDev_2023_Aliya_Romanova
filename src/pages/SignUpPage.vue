@@ -34,9 +34,7 @@ const onRegister = (dto) => {
           const data = errorData[item];
           console.log('>item', data);
           errors.value.push(data.message);
-
         }
-        
       } else
       {
         errors.value.push(error.message);
