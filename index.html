@@ -67,59 +67,148 @@
   class="container flex flex-row w-full h-full bg-gray-200 rounded-3xl p-4"
 >
 
-  <aside class="flex flex-col min-w-[190px] ">
-    <div class="flex flex-row">
+  <aside class="flex flex-col min-w-[190px] pr-4 relative">
+    <div class="absolute bottom-0">
+      <div class="flex flex-row">
+        <div class="flex flex-col pr-4 text-xs pl-1 relative -top-1">
+          <span
+            class="iconify-inline text-gray-400 text-xs"
+            data-icon="material-symbols:help-center-outline-sharp"
+          ></span>
+          </div>
+          <div class="flex flex-col text-gray-400 text-xs ">
+            <p>Help Centers</p>
+          </div>
+       </div>
+      <div class="flex flex-row ">
+        <div class="flex flex-col pr-4 text-xs pl-1 relative -top-2">
+          <span
+            class="iconify-inline text-gray-400 text-xs"
+            data-icon="grommet-icons:logout"
+          ></span>
+        </div>
+        <div class="flex flex-col text-gray-400 text-xs ">
+          <p>Log out</p>
+        </div>
+      </div>
+      <div></div>
+    </div>
+       <div class="flex flex-row">
       <div class="flex flex-row items-center gap-x-2 py-4 mr-16">
          <span
-           class="iconify-inline text-red-700 text-3xl"
-           data-icon="carbon:logo-youtube"
+           class="iconify-inline text-teal-600 text-3xl"
+           data-icon="mdi:alpha-t-circle-outline"
          ></span>
         <span class="font-bold text-xl">Taski</span>
       </div>
     </div>
     <div class="flex flex-row ">
-      <div class="flex flex-col mr-5">
+      <div class="flex flex-col mr-3">
         <span
-          class="iconify-inline text-red-700 text-3xl"
-          data-icon="carbon:logo-youtube"
+          class="iconify-inline text-grey-400 relative top-1 text-3xl"
+          data-icon="mdi:face-woman-shimmer-outline"
         ></span>
       </div>
-      <div class="flex flex-col">
-        <div class="flex flex-row font-bold">
-          <p>Jenny Wilson</p>
+      <div class="flex flex-col mb-4 relative -left-2">
+        <div class="flex flex-row font-bold mb-0">
+          <p>Aliya Romanova</p>
         </div>
-        <div class="flex flex-row">
+        <div class="flex flex-row text-sm mt-0 pt-0 text-gray-500 relative -top-2">
           <p>Premium account</p>
         </div>
+      </div>
+      <div class="flex flex-row">
+
       </div>
 
     </div>
     <div class="flex flex-row">
-      <div class="flex flex-col">
+      <div class="flex flex-col relative -top-1">
           <span
-            class="iconify-inline text-gray-400 text-2xl"
-            data-icon="bi:aspect-ratio"
+            class="iconify-inline text-gray-500 text-1xl"
+            data-icon="iconoir:activity"
           ></span>
       </div>
-      <div class="flex flex-col pl-4">
+      <div class="flex flex-col pl-4 pr-16 text-gray-500 text-1xl relative -top-1">
         <p>Activity</p>
       </div>
-      <div class="flex flex-col">
-        <span
-          class="iconify-inline text-gray-400 text-4xl pl-6"
-          data-icon="bi:aspect-ratio"
-        ></span>
+      <div class="flex flex-col ">
+        <button
+          class="bg-teal-600 text-white pt-1 pb-1 pl-3 pr-3 leading-3 rounded-xl w-full text-xs relative right-2"
+        >3
+        </button>
       </div>
     </div>
+    <div class="flex flex-row">
+      <div class="flex flex-col pr-4">
+          <span
+            class="iconify-inline text-gray-400 text-2xl"
+            data-icon="mdi:account"
+          ></span>
+      </div>
+      <div class="flex flex-col text-gray-400">
+        <p>My Profile</p>
+      </div>
+    </div>
+    <div class="flex flex-row h-px mt-2 mb-4 bg-gray-300 relative top-1 bottom-1">
 
-
-
-
-
-
+    </div>
+    <div class="flex flex-row relative border-8">
+      <div class="flex flex-col pr-24 font-bold">
+        <p>Pages</p>
+      </div>
+      <div class="flex flex-col pr-4">
+          <span
+            class="iconify-inline text-gray-400 text-2xl"
+            data-icon="iconoir:nav-arrow-up"
+          ></span>
+      </div>
+    </div>
+    <div class="flex flex-row mb-3">
+      <div class="flex flex-col pr-4 text-xs relative top-2">
+          <span
+            class="iconify-inline text-gray-400 text-xs"
+            data-icon="material-symbols:dashboard-outline"
+          ></span>
+      </div>
+      <div class="flex flex-col pr-24 text-gray-400 text-xs relative top-1">
+        <p>Dashboard</p>
+      </div>
+    </div>
+    <div class="flex flex-row mt-1">
+      <div class="flex flex-col pr-4 text-2xs relative top-2 font-bold">
+          <span
+            class="iconify-inline text-teal-600 text-xs"
+            data-icon="clarity:tasks-line"
+          ></span>
+      </div>
+      <div class="flex flex-col pr-24 text-teal-600 text-xs relative top-1">
+        <p>Tasks</p>
+      </div>
+    </div>
+    <div class="flex flex-row mt-3">
+      <div class="flex flex-col pr-4 text-xs relative top-2">
+          <span
+            class="iconify-inline text-gray-400 text-xs"
+            data-icon="ph:microsoft-teams-logo-light"
+          ></span>
+      </div>
+      <div class="flex flex-col pr-24 text-gray-400 text-xs relative top-1">
+        <p>Teams</p>
+      </div>
+    </div>
+    <div class="flex flex-row mt-3">
+      <div class="flex flex-col pr-4 text-xs relative top-2">
+          <span
+            class="iconify-inline text-gray-400 text-xs"
+            data-icon="mi:message"
+          ></span>
+      </div>
+      <div class="flex flex-col pr-24 text-gray-400 text-xs relative top-1">
+        <p>Messages</p>
+      </div>
+    </div>
   </aside>
-
-
 
   <main
     class="flex flex-col w-full bg-gray-50 rounded-2xl px-4 pt-2 pb-4 gap-y-4"
